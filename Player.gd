@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal did_action
+
 enum { DIRECTION_LEFT, DIRECTION_RIGHT }
 
 var move_speed:float = 200.0
@@ -50,14 +52,18 @@ func _physics_process(delta):
 			else:
 				enemies_hit = $WeaponAreaRight.get_overlapping_bodies()
 			
+			var enemy_list = []
 			# tell the enemies that they have been hit
 			for enemy in enemies_hit:
 				if enemy is Enemy:
 					enemy.do_damage(40)
+					enemy_list.append(enemy)
 			
 			# start the attack cooldown time
 			$AttackCooldownTimer.start()
 			can_attack = false
+			
+			emit_signal("did_action", "ATTACK", enemy_list)
 	
 	move_and_slide(velocity.normalized() * move_speed)
 

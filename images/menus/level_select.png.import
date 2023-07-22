@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/lazy-af.png-ca6f5c07c99dbd04f1f98ddeff425793.stex"
+path="res://.import/level_select.png-b33e0fbb8a9af5fdb804285a11f51103.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/branding/lazy-af.png"
-dest_files=[ "res://.import/lazy-af.png-ca6f5c07c99dbd04f1f98ddeff425793.stex" ]
+source_file="res://images/menus/level_select.png"
+dest_files=[ "res://.import/level_select.png-b33e0fbb8a9af5fdb804285a11f51103.stex" ]
 
 [params]
 
