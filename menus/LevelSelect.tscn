@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://menus/LevelSelect.gd" type="Script" id=1]
+
+[node name="LevelSelect" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+
+[node name="Level1Button" type="Button" parent="."]
+margin_left = 297.0
+margin_top = 192.0
+margin_right = 385.0
+margin_bottom = 275.0
+text = "1"
+
+[node name="Level2Button" type="Button" parent="."]
+margin_left = 360.0
+margin_top = 348.0
+margin_right = 442.0
+margin_bottom = 419.0
+text = "2"
+
+[node name="Level3Button" type="Button" parent="."]
+margin_left = 604.0
+margin_top = 213.0
+margin_right = 672.0
+margin_bottom = 287.0
+text = "3"
+
+[node name="Label" type="Label" parent="."]
+margin_left = 675.0
+margin_top = 30.0
+margin_right = 715.0
+margin_bottom = 44.0
+text = "DAY X"
+
+[connection signal="pressed" from="Level1Button" to="." method="_on_Level1Button_pressed"]
