@@ -18,3 +18,7 @@ func _on_Level1Button_pressed():
 
 func _on_Level2Button_pressed():
 	GameManager.start_level(2)
+
+
+func _on_SkipDayButton_pressed():
+	GameManager.skip_day()

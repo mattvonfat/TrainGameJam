@@ -23,11 +23,28 @@ func set_up(player_node, companion_node):
 	player.position = $PlayerStart.position
 	companion.position = $CompanionStart.position
 	
+	player.activate()
 	companion.new_level_reset()
+	
+	player.connect("died", self, "_on_player_died")
+	companion.connect("died", self, "_on_companion_died")
+	
+	$GUI.set_player(player)
+	$GUI.set_companion(companion)
 
 func _on_enemy_died(enemy_type:String):
-	print(enemy_type)
 	if enemy_type == "BOSS":
-		remove_child(player)
-		remove_child(companion)
-		emit_signal("level_complete")
+		end_level("WIN")
+
+func _on_player_died():
+	end_level("PD")
+
+func _on_companion_died():
+	end_level("CD")
+
+func end_level(result):
+	companion.health_update()
+	player.deactivate()
+	remove_child(player)
+	remove_child(companion)
+	emit_signal("level_complete", result)

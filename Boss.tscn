@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Boss.gd" type="Script" id=1]
 [ext_resource path="res://Enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://images/charge_progress_back.png" type="Texture" id=3]
+[ext_resource path="res://images/charge_progress_front.png" type="Texture" id=4]
 
 [node name="Boss" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
@@ -11,3 +13,44 @@ scale = Vector2( 2, 2 )
 
 [node name="CollisionShape2D" parent="." index="1"]
 scale = Vector2( 2, 2 )
+
+[node name="HealthBar" parent="." index="2"]
+margin_left = -57.0
+margin_top = -71.0
+margin_right = 57.0
+margin_bottom = -63.0
+
+[node name="CollisionShape2D" parent="WeaponAreaLeft" index="0"]
+position = Vector2( -28, 0 )
+
+[node name="CollisionShape2D" parent="WeaponAreaRight" index="0"]
+position = Vector2( 28, 0 )
+
+[node name="CollisionShape2D" parent="ViewAreaLeft" index="0"]
+position = Vector2( -41, -0.5 )
+
+[node name="CollisionShape2D" parent="ViewAreaRight" index="0"]
+position = Vector2( 41, -0.5 )
+
+[node name="ChargeAttackCooldownTimer" type="Timer" parent="." index="7"]
+wait_time = 8.0
+one_shot = true
+
+[node name="ChargeUpTime" type="Timer" parent="." index="8"]
+wait_time = 2.0
+one_shot = true
+
+[node name="ChargeProgress" type="TextureProgress" parent="." index="9"]
+visible = false
+margin_left = -51.0
+margin_top = -144.0
+margin_right = 51.0
+margin_bottom = -93.0
+max_value = 2.0
+step = 0.01
+texture_under = ExtResource( 3 )
+texture_progress = ExtResource( 4 )
+fill_mode = 1
+
+[connection signal="timeout" from="ChargeAttackCooldownTimer" to="." method="_on_ChargeAttackCooldownTimer_timeout"]
+[connection signal="timeout" from="ChargeUpTime" to="." method="_on_ChargeUpTime_timeout"]
